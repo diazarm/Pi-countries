@@ -3,7 +3,7 @@ const server = require("./src/server");
 const { conn, Countries } = require('./src/db.js');
 const PORT = 3001;
 
-conn.sync({ altern: true }).then(() => {
+conn.sync({ force: true }).then(() => {  //altern - force
 server.listen(PORT, async() => {
   const dbCountries = Countries.findAll();
   if(!dbCountries.length){
@@ -23,7 +23,7 @@ server.listen(PORT, async() => {
     for (let i = 0; i < infoApi.length; i++) {
       await Countries.findOrCreate({
         where: { name: infoApi[i].name },
-        defaults: { ...infoApi[i] }, 
+        defaults: { ...infoApi[i] }, // Agregar el operador spread para pasar los campos individuales
       });
     }
   }

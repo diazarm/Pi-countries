@@ -6,8 +6,9 @@ module.exports = (sequelize) => {
   sequelize.define('Countries', {
     id:{
       type:DataTypes.STRING,
-      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
       allowNull:false,
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -29,7 +30,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    area: {
+    area:{
       type: DataTypes.INTEGER,
       allowNull: true
     }, 
