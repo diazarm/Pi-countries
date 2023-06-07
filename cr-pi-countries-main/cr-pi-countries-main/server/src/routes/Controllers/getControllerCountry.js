@@ -1,18 +1,32 @@
-const axios = require("axios");
+//por si no se ve en sql SET client_encoding TO 'UTF8';
+
+const { Sequelize } = require('sequelize');
+const {Countries, Activities} = require ('../../db');
 
 
 const allCountry =  async () =>{
-    const country =  (await axios.get("http://localhost:5000/countries")).data;
-    return country.map(ele => (
-        {id:ele.cca3,
-        name: ele.name.common,
-        image: ele.flags.svg,
-        continent: ele.continents[0],
-        capital:ele.capital ? ele.capital[0] : "Not Found",
-        subregion: ele.subregion ? ele.subregion : "Not Found",
-        area: ele.area,
-        population: ele.population,}));
+    return await Countries.findAll();
 };
 
+const countryById = async (idCountryi)=>{
+    try {
+        const country = await Countries.findByPk(idCountryi, {
+        include: [
+            {
+                model: Activities,
+                attributes: ["name", "difficulty", "duration", "season"],
+                through: { attributes: [] },
+            },
+    ]})
+    
+            if (country) {return country}else{return "Country not found"}} 
+        catch (error) {
+		res.status(404).json({error:error.message});
+        
+    }
+    
+}
 
-module.exports = {allCountry};
+
+
+module.exports = {allCountry, countryById};

@@ -1,11 +1,11 @@
 const axios = require("axios");
 const server = require("./src/server");
-const { conn, Country } = require('./src/db.js');
+const { conn, Countries } = require('./src/db.js');
 const PORT = 3001;
 
 conn.sync({ altern: true }).then(() => {
 server.listen(PORT, async() => {
-  const dbCountries = Country.findAll();
+  const dbCountries = Countries.findAll();
   if(!dbCountries.length){
     const urlApi = await axios.get("http://localhost:5000/countries");
     const infoApi = await urlApi.data.map((ele)=>{
@@ -21,9 +21,9 @@ server.listen(PORT, async() => {
       };
     });
     for (let i = 0; i < infoApi.length; i++) {
-      await Country.findOrCreate({
+      await Countries.findOrCreate({
         where: { name: infoApi[i].name },
-        defaults: { ...infoApi[i] }, // Agregar el operador spread para pasar los campos individuales
+        defaults: { ...infoApi[i] }, 
       });
     }
   }

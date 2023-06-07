@@ -5,11 +5,11 @@ const {getByNameCountry, getCountriesHandler, getIdCountry} = require("./Handler
 
 const router = Router();
 
-router.get("/", getCountriesHandler);
-
 router.get("/:idCountry", getIdCountry);
 
 router.get("/name", getByNameCountry);
+
+router.get("/", getCountriesHandler);
 
 
 module.exports = router;
