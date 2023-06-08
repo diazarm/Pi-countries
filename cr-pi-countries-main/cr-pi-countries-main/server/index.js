@@ -3,7 +3,7 @@ const server = require("./src/server");
 const { conn, Countries } = require('./src/db.js');
 const PORT = 3001;
 
-conn.sync({ force: true }).then(() => {  //altern - force
+conn.sync({ altern: true }).then(() => {  //altern - force
 server.listen(PORT, async() => {
   const dbCountries = Countries.findAll();
   if(!dbCountries.length){
