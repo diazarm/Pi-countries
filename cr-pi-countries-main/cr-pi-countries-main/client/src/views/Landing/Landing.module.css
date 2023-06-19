@@ -1,3 +1,56 @@
-.landingInicio{
-    color: green;
+.div {
+  background-image: url("../../assets/images/Landing.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: grid;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome{
+    color: rgb(117, 89, 12);
+    text-shadow: 1px 3px 45px #66780c;
+    font-size: 90px;
+    margin-bottom: 8%;
+    margin-left: 50px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.text{
+    color: rgb(117, 89, 12);
+    text-shadow: 1px 3px 45px #66780c;
+    font-size: 30px;
+    margin-bottom: -10%;
+    width: 45%;
+    margin-left: 35%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.home{
+    width: 45%;
+    max-width: 230px;
+    font-size: 20px; 
+    background: none;
+    padding: 10px ; 
+    border: 1px solid rgb(235, 206, 206);
+    outline: 2px solid #1a1c10;
+    text-shadow: 10 10 30px #bbd210;
+    margin-left: 220px;
+    border-radius: 15px;
+}
+
+.home:hover{
+    color: #cd580a;
+    cursor: pointer; 
+}
+
+h3{
+    color: rgb(48, 11, 11);
+    text-shadow: 0 0 2px #6a7242;
+    font-size: 22px;
+    margin-bottom: 0%;
+    margin-left: 10px;
 }

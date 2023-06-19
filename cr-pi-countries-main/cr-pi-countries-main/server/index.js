@@ -2,6 +2,8 @@ const axios = require("axios");
 const server = require("./src/server");
 const { conn, Countries } = require('./src/db.js');
 const PORT = 3001;
+const cors = require("cors");
+
 
 conn.sync({ altern: true }).then(() => {  //altern - force
 server.listen(PORT, async() => {
@@ -12,7 +14,7 @@ server.listen(PORT, async() => {
       return{
         id:ele.cca3,
         name: ele.name.common,
-        image: ele.flags.svg,
+        flag: ele.flags.svg,
         continent: ele.continents[0],
         capital:ele.capital ? ele.capital[0] : "Not Found",
         subregion: ele.subregion ? ele.subregion : "Not Found",
@@ -32,3 +34,6 @@ server.listen(PORT, async() => {
 }).catch(error => console.error(error))
 //inicio y prueba
 
+//! Para solucionar la codificacion por defecto de sqlshell a utf8
+//SHOW client_encoding;
+//SET client_encoding = 'UTF8';

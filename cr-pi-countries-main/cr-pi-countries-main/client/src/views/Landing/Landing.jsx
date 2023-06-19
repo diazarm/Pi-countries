@@ -1,15 +1,16 @@
-import React from 'react';
-import styles from './Landing.module.css';
-
+import { NavLink } from "react-router-dom";
+import style from "./Landing.module.css";
 
 const Landing = () => {
-  return (
-    <div className={styles.landingInicio}>
-      <h1>estas en landing</h1>
-      
-    </div>
-  )
+    return (
+        <div className={style.div}>
+            <h1 className={style.welcome}>WELCOME!</h1>
+            <h3 className={style.text}>To the app, where you learned everything you ever wanted to know about our world </h3>
+            <NavLink to="/home">
+              <button className={style.home}>Please Push Here!</button>
+          </NavLink>
+        </div>
+    );
 };
-
 
 export default Landing;

@@ -1,19 +1,37 @@
-//import './App.css'
-import { Route, Routes } from "react-router-dom"
-import {Home, Landing, Form, Detail} from "./main"
+import './App.css';
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Landing, Home, Detail, Form, NotFound, Activities, Edit } from "./views";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
+  const location = useLocation();
 
+  const showComponents = () => {
+    if (location.pathname === "/home" ||
+    location.pathname === "/create" ||
+    location.pathname === "/activities" ||
+    location.pathname.includes("/edit/") ||
+    location.pathname.includes("/detail/")) {
+      return true
+    }
+    return false
+  };
+  
   return (
-    <div>
+    <div className="App">
+      {showComponents() &&
+      <NavBar />}
       <Routes>
-        <Route path="/" element={<Landing/>}/>
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/form" element={<Form/>}/>
-        <Route path="/detail" element={<Detail/>}/>
-     </Routes>
-    </div>
-    )
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/create" element={<Form />} />
+        <Route path="/edit/:id" element={<Edit />} />
+        <Route path='*' element={<NotFound />}/>
+      </Routes>
+   </div>
+  );
 }
 
-export default App
+export default App;
