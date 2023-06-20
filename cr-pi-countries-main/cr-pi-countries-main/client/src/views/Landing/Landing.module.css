@@ -23,7 +23,7 @@
     color: rgb(117, 89, 12);
     text-shadow: 1px 3px 45px #66780c;
     font-size: 30px;
-    margin-bottom: -10%;
+    margin-bottom: -5%;
     width: 45%;
     margin-left: 35%;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -36,14 +36,15 @@
     background: none;
     padding: 10px ; 
     border: 1px solid rgb(235, 206, 206);
-    outline: 2px solid #1a1c10;
+    outline: 2px solid #5b3b04;
     text-shadow: 10 10 30px #bbd210;
+    color: #5b3b04;
     margin-left: 220px;
     border-radius: 15px;
 }
 
 .home:hover{
-    color: #cd580a;
+    color: #fc6a08;
     cursor: pointer; 
 }
 

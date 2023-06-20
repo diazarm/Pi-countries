@@ -41,10 +41,10 @@ const Detail = () => {
                                     {activity.duration && <h4>Duration: {activity.duration} hs</h4>}
                                     <h4>
                                         Season:
-                                        {activity.season === "Spring" ? <> {activity.season}🌸</> : null}
-                                        {activity.season === "Winter" ? <> {activity.season}❄️</> : null}
-                                        {activity.season === "Autumn" ? <> {activity.season}🍂</> : null}
-                                        {activity.season === "Summer" ? <> {activity.season}☀️</> : null}
+                                        {activity.season === "Spring" ? <> {activity.season}</> : null}
+                                        {activity.season === "Winter" ? <> {activity.season}</> : null}
+                                        {activity.season === "Autumn" ? <> {activity.season}</> : null}
+                                        {activity.season === "Summer" ? <> {activity.season}</> : null}
                                     </h4>
                                 </div>
                             </div>

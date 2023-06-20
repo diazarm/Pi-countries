@@ -1,4 +1,4 @@
-.divLoad {
+/* .divLoad {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,4 +28,14 @@
     to {
         background-position-x: 40vh;
     }
-}
+} */
+/* 
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+

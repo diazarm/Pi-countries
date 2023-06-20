@@ -1,5 +1,5 @@
-import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_COUNTRY_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, FILTER_ACTIVITY, DELETE_ACTIVITY, PUT_ACTIVITY_BY_ID, } from "./actionsTypes";
-
+import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_COUNTRY_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, FILTER_ACTIVITY, DELETE_ACTIVITY, } from "./actionsTypes";
+//PUT_ACTIVITY_BY_ID, 
 const initialState = {
     countries: [],
     countriesCopy: [],
@@ -52,8 +52,8 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 countryDetail: {},
             };
-        case PUT_ACTIVITY_BY_ID:
-            return { ...state };
+        // case PUT_ACTIVITY_BY_ID:
+        //     return { ...state };
         case POST_ACTIVITY:
             return {
                 ...state,

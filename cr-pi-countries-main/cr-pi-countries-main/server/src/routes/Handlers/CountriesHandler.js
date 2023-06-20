@@ -9,7 +9,7 @@ const getCountriesHandler = async(req, res)=> {
             ele.name.toLowerCase().includes(name.toLowerCase()));
             if(Country.length > 0){
                 res.status(200).json(Country)} else {
-                res.status(200).json("Country not found..")}
+                res.status(400).json("Country not found..")}
             }else {
                 res.status(200).json(Countrys)
             }

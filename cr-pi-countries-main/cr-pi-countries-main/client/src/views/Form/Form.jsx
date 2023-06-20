@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries, postActivity } from "../../redux/actions";
 import validationForm from "../../helpers/Validations/ValidationForm";
-import Loading from "../../components/Loading/Loading";
+//import Loading from "../../components/Loading/Loading";
 import stylesForm from "./Form.module.css";
 
 const Form = () => {
@@ -16,18 +16,20 @@ const Form = () => {
         countries: [],
     });
     const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false)
+    //const [loading, setLoading] = useState(false)
 
     const dispatch = useDispatch();
     const { countriesCopy } = useSelector((state) => state);
     
     useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 300)
+  
         if (!countriesCopy.length) dispatch(getCountries())
     }, [])
+
+    // setLoading(true)
+    // setTimeout(() => {
+    //    setLoading(false)
+    // }, 300)
 
     const isFormEmpty = useMemo(() => {
         for (const key in form) {
@@ -65,12 +67,12 @@ const Form = () => {
         dispatch(postActivity(form));
         alert("Your activity has been added");
     };
-    
+  
+   
     return (
         <div className={stylesForm.div}>
-            {loading ?
-            <Loading /> : 
-            (<div className={stylesForm.divForm}>
+           
+            <div className={stylesForm.divForm}>
             
             <form onSubmit={handleSubmit} className={stylesForm.form}>
                 <div className={stylesForm.divAct}>
@@ -113,9 +115,16 @@ const Form = () => {
                 <button className={stylesForm.btnSubmit} type="submit" disabled={isFormEmpty || Object.keys(errors).length}>Add activity</button>
             </form>
             </div>
-            )}
+         
         </div>
     );
 };
 
 export default Form;
+
+
+// {loading ?
+//     <Loading /> : (
+
+
+//         )}

@@ -86,7 +86,7 @@ const Home = () => {
             <div className={stylesHome.divCards}>
                 <CardsContainer currentCountries={currentCountries}/>
             </div>
-            {!countries.length && <div className={stylesHome.divNotFound}>Countries Not Found <button className={stylesHome.btnResetNF} onClick={handleReset}>Reset</button></div>}
+            {/* {!countries.length && <div className={stylesHome.divNotFound}>Countries Not Found <button className={stylesHome.btnResetNF} onClick={handleReset}>Reset</button></div>} */}
         </div>
     )
 };

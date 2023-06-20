@@ -1,14 +1,16 @@
 const {Activities, Countries} = require ("../../db");
+const deleteActivityController = require("../Controllers/deleteActivityController")
 
 
 const postActivityHandler = async(req, res) =>{
-    const {name,
+    const {
+        name,
         difficulty,
         duration,
         season,
         countries} = req.body
     try {
-        let activity = await Activities.create({ name, difficulty, duration, season })
+        let activity = await Activities.create({  name, difficulty, duration, season })
         await activity.setCountries(countries.toUpperCase())
         let activityWithCountry = await Activities.findOne({
             where: { name: name },
@@ -33,6 +35,7 @@ const getActivityHandler = async (req, res) => {
     const allActivities = await Activities.findAll({ include: Countries });
   
     const result = allActivities.map((activity) => ({
+      id:activity.id,
       name: activity.name,
       difficulty: activity.difficulty,
       duration: activity.duration,
@@ -40,7 +43,6 @@ const getActivityHandler = async (req, res) => {
       countries: activity.Countries.map((country) => ({
         id: country.id,
         name: country.name,
-        // Agrega aquí otras propiedades de los países que desees incluir
       })),
     }));
   
@@ -48,4 +50,15 @@ const getActivityHandler = async (req, res) => {
   };
   
 
-module.exports = {getActivityHandler,postActivityHandler};
+  const deleteActivityHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const deleteActivity = await deleteActivityController(id);
+      //if (!deleteActivity) throw new Error("Activity couldn't be deleted");
+      res.status(201).json(deleteActivity);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
+
+module.exports = {getActivityHandler,postActivityHandler, deleteActivityHandler};
