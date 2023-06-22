@@ -4,7 +4,7 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Pagination from "../../components/Pagination/Pagination";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, getActivities, sortByName, sortByPopulation, filterContinent, filterActivity, reset } from "../../redux/actions";
+import { getCountries, getActivities, sortByName, sortByPopulation, filterContinent,  reset } from "../../redux/actions";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -22,7 +22,9 @@ const Home = () => {
 
     const handleSortByName = (event) => {
         event.preventDefault();
-        const { value } = event.target;
+        console.log("paso por el handle");
+        const  {value}  =  event.target ;
+        console.log(value)
         dispatch(sortByName(value));
     };
     const handleSortByPopulation = (event) => {
@@ -35,11 +37,12 @@ const Home = () => {
         const { value } = event.target;
         dispatch(filterContinent(value));
     };
-    const handleFilterActivity = (event) => {
-        event.preventDefault();
-        const { value } = event.target;
-        dispatch(filterActivity(value));
-    };
+    // const handleFilterActivity = (event) => {
+    //     console.log(event.target)
+    //     event.preventDefault();
+    //     const { value } = event.target;
+    //     dispatch(filterActivity(value));
+    // };
 
     const handleReset = () => {
         dispatch(reset());
@@ -72,12 +75,13 @@ const Home = () => {
                     <option value="North America">North America</option>
                     <option value="Antarctica">Antarctica</option>
                 </select>
-                <select className={stylesHome.selFilters} onChange={handleFilterActivity} name="filterActivity" defaultValue={"default"}>
+                {/* <select className={stylesHome.selFilters} onChange={handleFilterActivity} name="filterActivity" defaultValue={"default"}>
                     <option value="default" disabled>Filter by Activity</option>
                     {activities?.map(activity => {
+                       
                         return (
                             <option key={activity.id} value={activity.name}>{activity.name}</option>)})}
-                </select>
+                </select> */}
                 <button className={stylesHome.btnReset} onClick={handleReset}>Reset</button>
             </div>
             <div className={stylesHome.divPag}>

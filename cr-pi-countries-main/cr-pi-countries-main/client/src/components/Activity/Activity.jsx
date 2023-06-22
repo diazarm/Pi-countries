@@ -1,16 +1,19 @@
 import { useDispatch } from "react-redux";
-import stylesActivity from "./Activity.module.css";
 import { deleteActivity } from "../../redux/actions";
+import stylesActivity from "./Activity.module.css";
 
 const Activity = (activities) => {
     const dispatch = useDispatch();
+
+    console.log("ingresa a Activity:", activities.Countries);
+
     const handleDelete = () => {
         if (confirm("Are you sure want to delete the activity?")) {
             dispatch(deleteActivity(activities.id));
             alert("The activity has been successfully deleted");
             }
     };
-
+    const countryNames = activities.Countries.map((country) => country.name)
     return (
         <div className={stylesActivity.div}>
             <div className={stylesActivity.divbtn}>
@@ -20,15 +23,8 @@ const Activity = (activities) => {
                 <h2>{activities.name}</h2>
                 <h4>Difficulty: {activities.difficulty}/5</h4>
                 <h4>Duration: {activities.duration} hs</h4>
-                <h4>Season: {activities.season === "Spring" ? <> {activities.season} </> : null}
-                            {activities.season === "Winter" ? <> {activities.season} </> : null}
-                            {activities.season === "Autumn" ? <> {activities.season} </> : null}
-                            {activities.season === "Summer" ? <> {activities.season} </> : null}</h4>
-                <h4>Countries: {activities.Countries?.map((country, index) => {
-                    return (
-                        <img key={index} src={country.flag} alt={country.name} title={country.name}/>
-                    )
-                })}</h4>
+                <h4>Season: {activities.season }</h4>
+                <h4>Countries: {countryNames}</h4>
             </div>
         </div>
     );

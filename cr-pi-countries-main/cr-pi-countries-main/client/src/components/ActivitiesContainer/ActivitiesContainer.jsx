@@ -16,8 +16,8 @@ const ActivitiesContainer = ({activities}) => {
                         difficulty={activity.difficulty}
                         duration={activity.duration}
                         season={activity.season}
-                        Countries={activity.Countries}
-                    />
+                        Countries={activity.countries}
+                        />
                 );
             })}
             </div>

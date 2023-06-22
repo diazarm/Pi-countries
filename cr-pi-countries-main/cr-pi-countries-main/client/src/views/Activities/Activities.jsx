@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import stylesActivities from "./Activities.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import ActivitiesContainer from "../../components/ActivitiesContainer/ActivitiesContainer";
 import { useEffect } from "react";
 import { getActivities } from "../../redux/actions";
+import ActivitiesContainer from "../../components/ActivitiesContainer/ActivitiesContainer";
+import stylesActivities from "./Activities.module.css";
 
 const Activities = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Activities = () => {
             <div className={stylesActivities.divActs}>
                 <ActivitiesContainer activities={activities}/>
             </div>
-            {!activities.length && <div className={stylesActivities.divNoActivities}><h2>There are no activities</h2></div>}
+            {!activities.length && <div className={stylesActivities.divNoActivities}><h2>There are not activities</h2></div>}
         </div>
     );
 };

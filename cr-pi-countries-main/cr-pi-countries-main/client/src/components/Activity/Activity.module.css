@@ -18,9 +18,8 @@
     border-radius: 0.25em;
     height: 4vh;
     
-} */
-
-/* .divbtn button:hover, .btnEdit:hover {
+} 
+.divbtn button:hover, .btnEdit:hover {
     cursor: pointer;
     background-color: rgb(18, 3, 3);
 } */
@@ -46,6 +45,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5em;
+    gap: 0.6em;
     color: white;
 }

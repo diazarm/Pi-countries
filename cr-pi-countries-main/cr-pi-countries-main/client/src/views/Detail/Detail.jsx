@@ -39,13 +39,7 @@ const Detail = () => {
                                 <div className={stylesDetail.h4}>
                                     <h4>Difficulty: {activity.difficulty}/5</h4>
                                     {activity.duration && <h4>Duration: {activity.duration} hs</h4>}
-                                    <h4>
-                                        Season:
-                                        {activity.season === "Spring" ? <> {activity.season}</> : null}
-                                        {activity.season === "Winter" ? <> {activity.season}</> : null}
-                                        {activity.season === "Autumn" ? <> {activity.season}</> : null}
-                                        {activity.season === "Summer" ? <> {activity.season}</> : null}
-                                    </h4>
+                                    <h4>Season: {activity.season}</h4>
                                 </div>
                             </div>
                         )

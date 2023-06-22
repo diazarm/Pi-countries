@@ -24,7 +24,7 @@ const validationForm = (form) => {
     if (/[^\d+$]/g.test(form.duration)) {
         errors.duration = "The duration must be a number";
     }
-    
+        
     if (!form.season) {
         errors.season = "Must select 1 season";
     }

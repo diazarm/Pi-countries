@@ -1,32 +1,6 @@
 const {Activities, Countries} = require ("../../db");
 const deleteActivityController = require("../Controllers/deleteActivityController")
-
-
-const postActivityHandler = async(req, res) =>{
-    const {
-        name,
-        difficulty,
-        duration,
-        season,
-        countries} = req.body
-    try {
-        let activity = await Activities.create({  name, difficulty, duration, season })
-        await activity.setCountries(countries.toUpperCase())
-        let activityWithCountry = await Activities.findOne({
-            where: { name: name },
-            include: {
-                model: Countries,
-                through: {
-                    attributes: []
-                }
-            }
-        })
-        res.json(activityWithCountry)
-    } catch (error) {
-       res.status(400).json({error:error.message}) 
-    }
-}
-
+const postActivityController = require("../Controllers/postActivityController")
 
 
 
@@ -61,4 +35,22 @@ const getActivityHandler = async (req, res) => {
     }
   };
 
-module.exports = {getActivityHandler,postActivityHandler, deleteActivityHandler};
+  
+  const postActivityHandler = async (req, res) => {
+    const { name, difficulty, duration, season, countries } = req.body;
+      try {
+        const newActivity = await postActivityController(
+          name,
+          difficulty,
+          duration,
+          season,
+          countries
+        );
+        if (!newActivity) throw new Error("Activity couldn't be created");
+        res.status(201).json(newActivity);
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    };
+    
+    module.exports = {getActivityHandler,postActivityHandler, deleteActivityHandler};

@@ -1,5 +1,5 @@
 import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_COUNTRY_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, FILTER_ACTIVITY, DELETE_ACTIVITY, } from "./actionsTypes";
-//PUT_ACTIVITY_BY_ID, 
+
 const initialState = {
     countries: [],
     countriesCopy: [],
@@ -17,6 +17,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 countriesCopy: payload,
             };
         case GET_ACTIVITIES:
+            console.log("esto viene de la Api ", payload)
             return {
                 ...state,
                 activities: payload,
@@ -52,46 +53,45 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 countryDetail: {},
             };
-        // case PUT_ACTIVITY_BY_ID:
-        //     return { ...state };
+      
         case POST_ACTIVITY:
             return {
                 ...state,
                 activities: [...state.activities, payload],
             };
-        case SORT_BY_NAME:
-            return {
-                ...state,
-                countries:
-                    payload === "A - Z"
-                        ? state.countries.sort((a, b) => a.name > b.name)
-                        : state.countries.sort((a, b) => a.name < b.name),
-                numPage: 1,
-            };
-        case SORT_BY_POPULATION:
-            return {
-                ...state,
-                countries:
-                    payload === "Max - Min"
-                        ? state.countries.sort((a, b) => a.population < b.population)
-                        : state.countries.sort((a, b) => a.population > b.population),
-                numPage: 1,
-            };
+            case SORT_BY_NAME:
+                return {
+                  ...state,
+                  countries: payload === "A - Z"
+                    ? state.countries.slice().sort((a, b) => a.name.localeCompare(b.name))
+                    : state.countries.slice().sort((a, b) => b.name.localeCompare(a.name)),
+                  numPage: 1,
+                };
+                case SORT_BY_POPULATION:
+                    return {
+                      ...state,
+                      countries: payload === "Max - Min"
+                        ? state.countries.slice().sort((a, b) => b.population - a.population)
+                        : state.countries.slice().sort((a, b) => a.population - b.population),
+                      numPage: 1,
+                    };
+                  
         case FILTER_CONTINENT:
             return {
                 ...state,
-                countries: state.countries
+                countries: state.countriesCopy
                     .filter(country => country.continent === payload),
                 numPage: 1,
             };
-        case FILTER_ACTIVITY:
-            return {
-                ...state,
-                countries: state.countries
-                    .filter(country => country.Activities
-                        .some(activity => activity.name === payload)),
-                numPage: 1,
-            };
+            case FILTER_ACTIVITY:
+                return {
+                  ...state,
+                  countries: state.countriesCopy.filter(country =>
+                    country.activities.some(activity => activity.name === payload)
+                  ),
+                  numPage: 1,
+                };
+              
         case RESET:
             return {
                 ...state,

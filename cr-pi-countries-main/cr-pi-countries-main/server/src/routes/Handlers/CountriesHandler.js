@@ -2,7 +2,7 @@ const {allCountry, countryById} = require("../Controllers/getControllerCountry")
 
 const getCountriesHandler = async(req, res)=> {
     const {name} = req.query;
-    console.log('el query es: '+ name);
+    console.log('el query es: ', name);
     const Countrys = await allCountry();
     if (name){ 
             const Country = Countrys.filter((ele)=>

@@ -3,8 +3,8 @@ import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries, postActivity } from "../../redux/actions";
 import validationForm from "../../helpers/Validations/ValidationForm";
-//import Loading from "../../components/Loading/Loading";
 import stylesForm from "./Form.module.css";
+
 
 const Form = () => {
     
@@ -16,20 +16,14 @@ const Form = () => {
         countries: [],
     });
     const [errors, setErrors] = useState({});
-    //const [loading, setLoading] = useState(false)
-
+ 
     const dispatch = useDispatch();
+
     const { countriesCopy } = useSelector((state) => state);
     
     useEffect(() => {
-  
         if (!countriesCopy.length) dispatch(getCountries())
     }, [])
-
-    // setLoading(true)
-    // setTimeout(() => {
-    //    setLoading(false)
-    // }, 300)
 
     const isFormEmpty = useMemo(() => {
         for (const key in form) {
@@ -55,25 +49,23 @@ const Form = () => {
         const selectedCountry = event.target.value;
         const updatedCountries = event.target.checked
             ? [...form.countries, selectedCountry]
-            : form.countries.filter(country => country !== selectedCountry);
+            : form.countries.filter((country) => country !== selectedCountry);
         setForm({
             ...form,
             countries: updatedCountries,
         });
         setErrors(validationForm({ ...form, countries: updatedCountries }));
     };
-
+    
     const handleSubmit = () => {
         dispatch(postActivity(form));
         alert("Your activity has been added");
     };
-  
-   
+    
     return (
         <div className={stylesForm.div}>
-           
+
             <div className={stylesForm.divForm}>
-            
             <form onSubmit={handleSubmit} className={stylesForm.form}>
                 <div className={stylesForm.divAct}>
                     <label htmlFor="name" className={stylesForm.labelAct}>New Activity</label>
@@ -102,7 +94,7 @@ const Form = () => {
                 <div className={stylesForm.divCountries}>
                     <label htmlFor="countries" className={stylesForm.labelCountries}>Countries associated with the activity</label>
                     <div className={stylesForm.divCounts}>
-                        {countriesCopy.sort((a, b) => a.name > b.name).map((event) => (
+                        {countriesCopy.slice().sort((a, b) => a.name.localeCompare(b.name)).map((event) => (
                             <div key={event.id}>
                                 <input id={event.id} value={event.name} name={event.name} type="checkbox" onChange={handleCountries} className={stylesForm.inputImg}/>
                                 <img src={event.flag} alt={event.flag} className={stylesForm.imgCountries}/>
@@ -122,9 +114,3 @@ const Form = () => {
 
 export default Form;
 
-
-// {loading ?
-//     <Loading /> : (
-
-
-//         )}
