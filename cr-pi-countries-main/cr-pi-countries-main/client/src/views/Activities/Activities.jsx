@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getActivities } from "../../redux/actions";
@@ -6,11 +5,13 @@ import ActivitiesContainer from "../../components/ActivitiesContainer/Activities
 import stylesActivities from "./Activities.module.css";
 
 const Activities = () => {
+    
     const dispatch = useDispatch();
     const { activities } = useSelector((state) => state);
+    
     useEffect(() => {
         if (!activities.length) dispatch(getActivities());
-    }, [])
+    }, [activities.length, dispatch])
 
     return (
         <div className={stylesActivities.div}>

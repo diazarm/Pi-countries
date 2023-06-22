@@ -5,8 +5,6 @@ import stylesActivity from "./Activity.module.css";
 const Activity = (activities) => {
     const dispatch = useDispatch();
 
-    console.log("ingresa a Activity:", activities.Countries);
-
     const handleDelete = () => {
         if (confirm("Are you sure want to delete the activity?")) {
             dispatch(deleteActivity(activities.id));

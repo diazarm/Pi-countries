@@ -10,5 +10,6 @@ router.post("/", postActivityHandler);
 
 router.delete("/:id", deleteActivityHandler);
 
+
 module.exports = router;
 

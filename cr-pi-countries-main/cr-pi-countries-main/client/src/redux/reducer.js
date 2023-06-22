@@ -17,7 +17,6 @@ const reducer = (state = initialState, { type, payload }) => {
                 countriesCopy: payload,
             };
         case GET_ACTIVITIES:
-            console.log("esto viene de la Api ", payload)
             return {
                 ...state,
                 activities: payload,
@@ -59,23 +58,22 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 activities: [...state.activities, payload],
             };
-            case SORT_BY_NAME:
-                return {
-                  ...state,
-                  countries: payload === "A - Z"
+        case SORT_BY_NAME:
+            return {
+                ...state,
+                countries: payload === "A - Z"
                     ? state.countries.slice().sort((a, b) => a.name.localeCompare(b.name))
                     : state.countries.slice().sort((a, b) => b.name.localeCompare(a.name)),
-                  numPage: 1,
-                };
-                case SORT_BY_POPULATION:
-                    return {
-                      ...state,
-                      countries: payload === "Max - Min"
-                        ? state.countries.slice().sort((a, b) => b.population - a.population)
-                        : state.countries.slice().sort((a, b) => a.population - b.population),
-                      numPage: 1,
-                    };
-                  
+                numPage: 1,
+            };
+        case SORT_BY_POPULATION:
+            return {
+                ...state,
+                countries: payload === "Max - Min"
+                    ? state.countries.slice().sort((a, b) => b.population - a.population)
+                    : state.countries.slice().sort((a, b) => a.population - b.population),
+                numPage: 1,
+            };
         case FILTER_CONTINENT:
             return {
                 ...state,
@@ -83,14 +81,14 @@ const reducer = (state = initialState, { type, payload }) => {
                     .filter(country => country.continent === payload),
                 numPage: 1,
             };
-            case FILTER_ACTIVITY:
-                return {
-                  ...state,
-                  countries: state.countriesCopy.filter(country =>
+        case FILTER_ACTIVITY:
+            return {
+                ...state,
+                countries: state.countriesCopy.filter(country =>
                     country.activities.some(activity => activity.name === payload)
-                  ),
-                  numPage: 1,
-                };
+                ),
+                numPage: 1,
+            };
               
         case RESET:
             return {

@@ -2,8 +2,6 @@ const axios = require("axios");
 const server = require("./src/server");
 const { conn, Countries } = require('./src/db.js');
 const PORT = 3001;
-const cors = require("cors");
-
 
 conn.sync({ altern: true }).then(() => {  //altern - force
 server.listen(PORT, async() => {
@@ -25,14 +23,14 @@ server.listen(PORT, async() => {
     for (let i = 0; i < infoApi.length; i++) {
       await Countries.findOrCreate({
         where: { name: infoApi[i].name },
-        defaults: { ...infoApi[i] }, // Agregar el operador spread para pasar los campos individuales
+        defaults: { ...infoApi[i] }, 
       });
     }
   }
   console.log(`Server listening on port ${PORT}`);
 })
 }).catch(error => console.error(error))
-//inicio y prueba
+
 
 //! Para solucionar la codificacion por defecto de sqlshell a utf8
 //SHOW client_encoding;

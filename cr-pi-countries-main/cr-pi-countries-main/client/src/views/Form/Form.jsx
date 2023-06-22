@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries, postActivity } from "../../redux/actions";
@@ -23,7 +22,7 @@ const Form = () => {
     
     useEffect(() => {
         if (!countriesCopy.length) dispatch(getCountries())
-    }, [])
+    }, [countriesCopy.length, dispatch])
 
     const isFormEmpty = useMemo(() => {
         for (const key in form) {

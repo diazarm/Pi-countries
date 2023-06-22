@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_COUNTRY_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, FILTER_ACTIVITY, DELETE_ACTIVITY } from "./actionsTypes";
+import { GET_COUNTRIES, GET_COUNTRY_BY_NAME, NEXT_PAGE, PREV_PAGE, NUMBER_PAGE, GET_COUNTRY_BY_ID, CLEAN_DETAIL, POST_ACTIVITY, RESET, GET_ACTIVITIES, SORT_BY_NAME, SORT_BY_POPULATION, FILTER_CONTINENT, DELETE_ACTIVITY } from "./actionsTypes";
 
 const endPCountries = "http://localhost:3001/countries";
 const endPActivities = "http://localhost:3001/activities";
@@ -8,7 +8,6 @@ export const getCountries = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`${endPCountries}`);
-            //if (!data.length) throw Error();
             return dispatch({ type: GET_COUNTRIES, payload: data})
         } catch (error) {
             alert("Countries couldn't be loaded");           
@@ -20,7 +19,6 @@ export const getCountryByName = (name) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`${endPCountries}/?name=${name}`);
-            //if (!data) throw Error();
             return dispatch({ type: GET_COUNTRY_BY_NAME, payload: data})
         } catch (error) {
             alert("Try another name please");           
@@ -32,7 +30,6 @@ export const getCountryById = (id) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`${endPCountries}/${id}`);
-            //if (!data) throw Error();
             return dispatch({ type: GET_COUNTRY_BY_ID, payload: data})
         } catch (error) {
             alert("Couldn't load the detail of the country");           
@@ -41,13 +38,10 @@ export const getCountryById = (id) => {
 };
 
 export const postActivity = (form) => {
-    console.log("esto quiero ver" ,form)
-
     return async (dispatch) => {
         try {
             const { data } = await axios.post(`${endPActivities}`,form);
             if (!data) throw Error();
-            console.log(data);
             return dispatch({ type: POST_ACTIVITY, payload: data });
         } catch (error) {
             alert("The activity already exists")
@@ -59,7 +53,6 @@ export const getActivities = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`${endPActivities}`);
-           // if (!data.length) throw Error();
             return dispatch({ type: GET_ACTIVITIES, payload: data})
         } catch (error) {
             alert("No activities available");           
@@ -69,7 +62,6 @@ export const getActivities = () => {
 
 export const deleteActivity = (id) => {
     return async (dispatch) => {
-        console.log("paso por action")
         try {
             const { data } = await axios.delete(`${endPActivities}/${id}`);
             if (!data) throw Error();
@@ -107,14 +99,6 @@ export const filterContinent = (value) => {
         payload: value,
     };
 };
-
-// export const filterActivity = (value) => {
-//     console.log(value)
-//     return {
-//         type: FILTER_ACTIVITY,
-//         payload: value,
-//     };
-// };
 
 export const nextPage = () => {
     return {

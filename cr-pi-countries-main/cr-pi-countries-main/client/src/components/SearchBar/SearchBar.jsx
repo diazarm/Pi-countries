@@ -12,7 +12,7 @@ const SearchBar = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+    event.preventDefault(); 
     dispatch(getCountryByName(name));
     setName("");
   };
@@ -20,13 +20,7 @@ const SearchBar = () => {
   return (
     <div className={stylesSearchBar.div}>
       <form onSubmit={handleSubmit}>
-        <input
-          className={stylesSearchBar.input}
-          type="search"
-          placeholder="Search country by name..."
-          onChange={handleInputChange}
-          value={name}
-        />
+        <input className={stylesSearchBar.input} type="search" placeholder="Search country by name..." onChange={handleInputChange}value={name}/>
         <button className={stylesSearchBar.btn} type="submit">
           Search
         </button>

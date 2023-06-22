@@ -39,8 +39,7 @@ const Pagination = ({pages}) => {
                 <button
                   onClick={() => page(i)}
                   className={stylesPagination.btnNum}
-                  key={i}
-                >
+                  key={i}>
                   {i}
                 </button>
             );
@@ -59,29 +58,17 @@ const Pagination = ({pages}) => {
         <div className={stylesPagination.divPag}>
             {numPage > 1 && (
                 <div className={stylesPagination.divBtn}>
-                    <button className={stylesPagination.btnPN} onClick={first}> &lt; First
-                        
-                    </button>
-                    <button className={stylesPagination.btnPN} onClick={prev}>
-                    &lt;&lt; Prev
-                    </button>
+                    <button className={stylesPagination.btnPN} onClick={first}> &lt; First </button>
+                    <button className={stylesPagination.btnPN} onClick={prev}>  &lt;&lt; Prev </button>
                 </div>
             )}
-            <div className={stylesPagination.divBtn}>
-                {renderPrevPageNumbers()}
-            </div>
+            <div className={stylesPagination.divBtn}> {renderPrevPageNumbers()} </div>
             <h2 className={stylesPagination.h2}>{numPage} {pages !== 0 && `of ${pages}`}</h2>
-            <div className={stylesPagination.divBtn}>
-                {renderNextPageNumbers()}
-            </div>
+            <div className={stylesPagination.divBtn}> {renderNextPageNumbers()} </div>
             {numPage < pages && (
                 <div className={stylesPagination.divBtn}>
-                    <button className={stylesPagination.btnPN} onClick={next}>
-                        Next &gt;
-                    </button>
-                    <button className={stylesPagination.btnPN} onClick={last}>
-                        Last &gt;&gt;
-                    </button>
+                    <button className={stylesPagination.btnPN} onClick={next}> Next &gt; </button>
+                    <button className={stylesPagination.btnPN} onClick={last}> Last &gt;&gt; </button>
                 </div>
             )}
         </div>

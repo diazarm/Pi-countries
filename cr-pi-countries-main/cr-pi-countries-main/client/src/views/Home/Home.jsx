@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import stylesHome from "./Home.module.css";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Pagination from "../../components/Pagination/Pagination";
@@ -13,7 +12,7 @@ const Home = () => {
     useEffect(() => {
         if (!countriesCopy.length) dispatch(getCountries());
         if (!activities.length) dispatch(getActivities());
-    }, []);
+    }, [activities.length, countriesCopy.length, dispatch]);
 
     let first = (numPage - 1) * 10;
     let second = numPage * 10;
@@ -22,9 +21,7 @@ const Home = () => {
 
     const handleSortByName = (event) => {
         event.preventDefault();
-        console.log("paso por el handle");
         const  {value}  =  event.target ;
-        console.log(value)
         dispatch(sortByName(value));
     };
     const handleSortByPopulation = (event) => {
@@ -37,13 +34,7 @@ const Home = () => {
         const { value } = event.target;
         dispatch(filterContinent(value));
     };
-    // const handleFilterActivity = (event) => {
-    //     console.log(event.target)
-    //     event.preventDefault();
-    //     const { value } = event.target;
-    //     dispatch(filterActivity(value));
-    // };
-
+   
     const handleReset = () => {
         dispatch(reset());
         const selectElements = document.querySelectorAll("select");
@@ -75,13 +66,6 @@ const Home = () => {
                     <option value="North America">North America</option>
                     <option value="Antarctica">Antarctica</option>
                 </select>
-                {/* <select className={stylesHome.selFilters} onChange={handleFilterActivity} name="filterActivity" defaultValue={"default"}>
-                    <option value="default" disabled>Filter by Activity</option>
-                    {activities?.map(activity => {
-                       
-                        return (
-                            <option key={activity.id} value={activity.name}>{activity.name}</option>)})}
-                </select> */}
                 <button className={stylesHome.btnReset} onClick={handleReset}>Reset</button>
             </div>
             <div className={stylesHome.divPag}>
@@ -90,7 +74,6 @@ const Home = () => {
             <div className={stylesHome.divCards}>
                 <CardsContainer currentCountries={currentCountries}/>
             </div>
-            {/* {!countries.length && <div className={stylesHome.divNotFound}>Countries Not Found <button className={stylesHome.btnResetNF} onClick={handleReset}>Reset</button></div>} */}
         </div>
     )
 };

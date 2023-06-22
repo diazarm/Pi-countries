@@ -18,7 +18,7 @@ const postActivityController = async (
     duration,
     season,
   });
-
+  
   const countriesData = await Countries.findAll({
     where: {
       name: countries,

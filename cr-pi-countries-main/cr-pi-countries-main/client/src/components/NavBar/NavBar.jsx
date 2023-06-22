@@ -13,15 +13,13 @@ const NavBar = () => {
         <div className={stylesNavBar.divNav}>
             <Link to='/home'>
                 <button className={stylesNavBar.btn}>
-                    <img src={HomeIcon} alt="HomeIcon" className={stylesNavBar.img}/>
-                    Home
-                </button>
+                    <img src={HomeIcon} alt="HomeIcon" className={stylesNavBar.img}/> Home </button>
             </Link>
             {location.pathname === "/home" && <SearchBar />}
             {location.pathname === "/activities" && 
-                <Link to="/create">
-                    <button className={stylesNavBar.btn}> Add new Activity</ button>
-                </Link>
+            <Link to="/create"> 
+                <button className={stylesNavBar.btn}> Add new Activity</ button>
+            </Link>
             }
             <Link to='/activities'>
                 <button className={stylesNavBar.btn}>
